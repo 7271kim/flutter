@@ -8,17 +8,26 @@ import 'package:table_calendar/table_calendar.dart';
 class Diary {
   String text; // 내용
   DateTime createdAt; // 작성 시간
+  int index;
 
   Diary({
     required this.text,
     required this.createdAt,
+    required this.index,
   });
+
+  /// Diary -> Map 변경
+  Map<String, dynamic> toJson() {
+    return {
+      "text": text,
+      "createdAt": createdAt.toString(),
+    };
+  }
 }
 
 class DiaryService extends ChangeNotifier {
   final SharedPreferences _prefs;
-  LinkedHashMap<DateTime, List<Diary>> diaryList =
-      LinkedHashMap<DateTime, List<Diary>>(
+  HashMap<DateTime, List<Diary>> diaryList = HashMap<DateTime, List<Diary>>(
     equals: isSameDay,
     hashCode: (key) => key.day * 1000000 + key.month * 10000 + key.year,
   );
@@ -43,16 +52,42 @@ class DiaryService extends ChangeNotifier {
     if (diaryList[selectedDate] == null) {
       diaryList[selectedDate] = [];
     }
-    diaryList[selectedDate]!.add(Diary(text: text, createdAt: selectedDate));
+    diaryList[selectedDate]!.add(Diary(
+        text: text,
+        createdAt: selectedDate,
+        index: diaryList[selectedDate]!.length));
+
+    notifyListeners();
+    _saveDiaryList();
   }
 
   /// Diary 수정
-  void update(DateTime createdAt, String newContent) {
-    // TODO
+  void update(DateTime createdAt, String newContent, int index) {
+    diaryList[createdAt]![index].text = newContent;
+
+    notifyListeners();
+    _saveDiaryList();
   }
 
   /// Diary 삭제
-  void delete(DateTime createdAt) {
-    // TODO
+  void delete(DateTime createdAt, int index) {
+    diaryList[createdAt]!.removeAt(index);
+    int count = 0;
+    diaryList[createdAt]!.forEach((diary) {
+      diary.index = count++;
+    });
+    notifyListeners();
+    _saveDiaryList();
+  }
+
+  void _saveDiaryList() {
+    Map<String, String> jsonMap = {};
+    diaryList.forEach((key, listDay) {
+      for (Diary diary in listDay) {
+        Map<String, dynamic> temp = diary.toJson();
+        jsonMap[key.toString()] = jsonEncode(temp);
+      }
+    });
+    _prefs.setString("savedDiary", jsonEncode(jsonMap));
   }
 }
