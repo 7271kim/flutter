@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/book_store/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'book_store/book_service.dart';
 import 'diary_service.dart';
 import 'home_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -9,12 +11,11 @@ import 'package:intl/date_symbol_data_local.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setString("savedDiary", "{}");
 
   initializeDateFormatting().then((_) => runApp(
         MultiProvider(
           providers: [
-            ChangeNotifierProvider(create: (context) => DiaryService(prefs)),
+            ChangeNotifierProvider(create: (context) => BookService(prefs)),
           ],
           child: const MyApp(),
         ),
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.getTextTheme('Jua'),
       ),
-      home: HomePage(),
+      home: Home(),
     );
   }
 }
