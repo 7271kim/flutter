@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/book_store/home.dart';
+import 'package:flutter_application/study_widget/MaterialAppStudy.dart';
 import 'package:flutter_application/study_widget/Scaffold.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'book_store/book_service.dart';
@@ -26,12 +25,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        textTheme: GoogleFonts.getTextTheme('Jua'),
-      ),
-      home: ScaffoldStudy(),
-    );
+    return MaterialAppStudy();
   }
 }
