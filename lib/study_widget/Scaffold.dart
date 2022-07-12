@@ -9,31 +9,43 @@ class ScaffoldStudy extends StatelessWidget {
       appBar: AppBarStudy(),
       body: Text('body'),
       bottomNavigationBar: BottomNavigationBarStudy(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButtonStudy(),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              child: Text('Drawer Header'),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
+      drawer: DrawerStudy(),
+    );
+  }
+}
+
+class DrawerStudy extends StatelessWidget {
+  const DrawerStudy({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            child: Text('Drawer Header'),
+            decoration: BoxDecoration(
+              color: Colors.blue,
             ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
+          ),
+          ListTile(
+            title: Text('Item 1'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: Text('Item 2'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
       ),
     );
   }
@@ -49,6 +61,8 @@ class FloatingActionButtonStudy extends StatelessWidget {
     return FloatingActionButton(
       onPressed: () {},
       backgroundColor: Colors.green,
+      highlightElevation: 50,
+      hoverElevation: 50,
       child: const Icon(Icons.navigation),
     );
   }

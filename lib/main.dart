@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/study_widget/MaterialAppStudy.dart';
 import 'package:flutter_application/study_widget/Scaffold.dart';
+import 'package:flutter_application/study_widget/TabStudy.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'book_store/book_service.dart';
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialAppStudy();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(body: TabStudy()),
+    );
   }
 }
