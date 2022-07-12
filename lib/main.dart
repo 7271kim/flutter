@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/study_widget/ContainerStudy.dart';
+import 'package:flutter_application/study_widget/GestureDetectorStudy.dart';
 import 'package:flutter_application/study_widget/GrideViewStudy.dart';
 import 'package:flutter_application/study_widget/MaterialAppStudy.dart';
 import 'package:flutter_application/study_widget/Scaffold.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(body: ContainerStudy()),
+      home: Scaffold(body: GestureDetectorStudy()),
     );
   }
 }
