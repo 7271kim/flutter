@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class ButtonStudy extends StatefulWidget {
   const ButtonStudy({Key? key}) : super(key: key);
@@ -15,7 +16,20 @@ class _ButtonStudyState extends State<ButtonStudy> {
         createElevatedButton(),
         createTextButton(),
         createOutlineButton(),
+        createIconButton(),
       ],
+    );
+  }
+
+  IconButton createIconButton() {
+    return IconButton(
+      tooltip: 'Increase volume by 10',
+      icon: const Icon(
+        CupertinoIcons.bell,
+        size: 28.0,
+        color: Colors.black,
+      ),
+      onPressed: () {},
     );
   }
 

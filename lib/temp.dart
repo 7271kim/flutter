@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,612 +9,389 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Shazam',
+      title: 'Flutter ClubHouse UI',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(backgroundColor: Palette.background),
+        scaffoldBackgroundColor: Palette.background,
+        primaryColor: Colors.white,
+        accentColor: Palette.green,
+        iconTheme: const IconThemeData(color: Colors.black),
+        fontFamily: GoogleFonts.montserrat().fontFamily,
+        textTheme: GoogleFonts.montserratTextTheme(),
       ),
-      home: HomePage(),
+      home: HomeScreen(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  State<HomePage> createState() => _HomePageState();
+class Palette {
+  static const Color background = Color(0xFFF0F0E4);
+  static const Color secondaryBackground = Color(0xFFE7E4D3);
+  static const Color green = Color(0xFF2AAF61);
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
-  late final TabController _tabController;
-  int _seletedIndex = 1;
+class User {
+  final String givenName;
+  final String familyName;
+  final String imageUrl;
 
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 3, vsync: this);
-    _tabController.index = 1;
+  const User({
+    required this.givenName,
+    required this.familyName,
+    required this.imageUrl,
+  });
+}
 
-    _tabController.addListener(() {
-      setState(() {
-        _seletedIndex = _tabController.index;
-      });
-    });
-  }
+const User currentUser = User(
+  givenName: 'Marcus',
+  familyName: 'Ng',
+  imageUrl:
+      'https://images.unsplash.com/photo-1578133671540-edad0b3d689e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80',
+);
+
+const List<User> _allUsers = [
+  User(
+    givenName: 'Marcus',
+    familyName: 'Ng',
+    imageUrl:
+        'https://images.unsplash.com/photo-1578133671540-edad0b3d689e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80',
+  ),
+  User(
+    givenName: 'David',
+    familyName: 'Brooks',
+    imageUrl:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+  ),
+  User(
+    givenName: 'Jane',
+    familyName: 'Doe',
+    imageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+  ),
+  User(
+    givenName: 'Matthew',
+    familyName: 'Hinkle',
+    imageUrl:
+        'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1331&q=80',
+  ),
+  User(
+    givenName: 'Amy',
+    familyName: 'Smith',
+    imageUrl:
+        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80',
+  ),
+  User(
+    givenName: 'Ed',
+    familyName: 'Morris',
+    imageUrl:
+        'https://images.unsplash.com/photo-1521119989659-a83eee488004?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=664&q=80',
+  ),
+  User(
+    givenName: 'Carolyn',
+    familyName: 'Duncan',
+    imageUrl:
+        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+  ),
+  User(
+    givenName: 'Paul',
+    familyName: 'Pinnock',
+    imageUrl:
+        'https://images.unsplash.com/photo-1519631128182-433895475ffe?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+  ),
+  User(
+      givenName: 'Elizabeth',
+      familyName: 'Wong',
+      imageUrl:
+          'https://images.unsplash.com/photo-1515077678510-ce3bdf418862?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjF9&auto=format&fit=crop&w=675&q=80'),
+  User(
+    givenName: 'James',
+    familyName: 'Lathrop',
+    imageUrl:
+        'https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=592&q=80',
+  ),
+  User(
+    givenName: 'Jessie',
+    familyName: 'Samson',
+    imageUrl:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+  ),
+];
+
+class Room {
+  final String club;
+  final String name;
+  final String time;
+  final List<User> speakers;
+  final List<User> followedBySpeakers;
+  final List<User> others;
+
+  const Room({
+    required this.club,
+    required this.name,
+    this.time = '',
+    this.speakers = const [],
+    this.followedBySpeakers = const [],
+    this.others = const [],
+  });
+}
+
+const List<Room> upcomingRoomsList = [
+  Room(
+    club: 'Flutter',
+    name: 'Flutter Engage Recap 🔴',
+    time: '3:00 PM',
+  ),
+  Room(
+    club: 'New User Onboarding',
+    name: 'Welcome to Clubhouse 👋',
+    time: '7:00 PM',
+  ),
+  Room(
+    club: '',
+    name: 'Clubhouse Turns 1',
+    time: '9:00 PM',
+  ),
+];
+
+final List<Room> roomsList = [
+  Room(
+    club: 'Social Society',
+    name: 'Welcome to Clubhouse 🎉 (Walkthrough with Q&A)',
+    speakers: (List<User>.from(_allUsers)..shuffle()).getRange(0, 4).toList(),
+    followedBySpeakers: List<User>.from(_allUsers)..shuffle(),
+    others: List<User>.from(_allUsers)..shuffle(),
+  ),
+  Room(
+    club: 'Good Time',
+    name: '⏰ A Very Important Person on Good Time',
+    speakers: (List<User>.from(_allUsers)..shuffle()).getRange(0, 4).toList(),
+    followedBySpeakers: List<User>.from(_allUsers)..shuffle(),
+    others: List<User>.from(_allUsers)..shuffle(),
+  ),
+  Room(
+    club: 'NYU girls roasting tech guys',
+    name: 'love and bitcoin edition 💰',
+    speakers: (List<User>.from(_allUsers)..shuffle()).getRange(0, 4).toList(),
+    followedBySpeakers: List<User>.from(_allUsers)..shuffle(),
+    others: List<User>.from(_allUsers)..shuffle(),
+  ),
+];
+
+class BackChannelRoom {
+  final String profileImageUrl;
+  final String name;
+  final String message;
+  final String timestamp;
+
+  const BackChannelRoom({
+    required this.profileImageUrl,
+    required this.name,
+    required this.message,
+    required this.timestamp,
+  });
+}
+
+final List<BackChannelRoom> backChannelRoomsList = [
+  BackChannelRoom(
+    profileImageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+    name: 'Jane Doe',
+    message: 'You: Hello!',
+    timestamp: '9:58 PM',
+  ),
+  BackChannelRoom(
+    profileImageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+    name: 'Jane Doe',
+    message: 'You: Hello!',
+    timestamp: '9:58 PM',
+  ),
+  BackChannelRoom(
+    profileImageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+    name: 'Jane Doe',
+    message: 'You: Hello!',
+    timestamp: '9:58 PM',
+  ),
+  BackChannelRoom(
+    profileImageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+    name: 'Jane Doe',
+    message: 'You: Hello!',
+    timestamp: '9:58 PM',
+  ),
+  BackChannelRoom(
+    profileImageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+    name: 'Jane Doe',
+    message: 'You: Hello!',
+    timestamp: '9:58 PM',
+  ),
+];
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const songs = [
-      {
-        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
-        'title': '가을밤에 든 생각',
-        'artist': '잔나비',
-      },
-      {
-        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
-        'title': '가을밤에 든 생각',
-        'artist': '잔나비',
-      },
-      {
-        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
-        'title': '가을밤에 든 생각',
-        'artist': '잔나비',
-      },
-      {
-        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
-        'title': '가을밤에 든 생각',
-        'artist': '잔나비',
-      },
-      {
-        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
-        'title': '가을밤에 든 생각',
-        'artist': '잔나비',
-      },
-      {
-        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
-        'title': '가을밤에 든 생각',
-        'artist': '잔나비',
-      },
-    ];
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            CupertinoIcons.compass,
+            size: 28.0,
+            color: Colors.black,
+          ),
+          onPressed: () {},
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              CupertinoIcons.envelope_open,
+              size: 26.0,
+              color: Colors.black,
+            ),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(
+              CupertinoIcons.calendar,
+              size: 28.0,
+              color: Colors.black,
+            ),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(
+              CupertinoIcons.bell,
+              size: 28.0,
+              color: Colors.black,
+            ),
+            onPressed: () {},
+          ),
+          GestureDetector(
+            onTap: () {},
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(8.0, 10.0, 20.0, 10.0),
+              child: UserProfileImage(
+                imageURL: currentUser.imageUrl,
+                size: 36.0,
+              ),
+            ),
+          )
+        ],
+      ),
       body: Stack(
+        alignment: Alignment.center,
         children: [
-          TabBarView(
-            controller: _tabController,
+          ListView(
+            padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 120.0),
             children: [
-              // 첫번째 페이지
-              SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            child: Icon(Icons.settings),
-                          ),
-                          Text(
-                            "라이브러리",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Icon(null),
-                        ],
-                      ),
-                      SizedBox(height: 8),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Row(
-                          children: [
-                            Container(
-                              child: ImageIcon(
-                                NetworkImage(
-                                  "https://cdn.iconscout.com/icon/free/png-256/shazam-3-761709.png",
-                                ),
-                                size: 18,
-                              ),
-                              width: 24,
-                            ),
-                            SizedBox(width: 8),
-                            Text(
-                              'Shazam',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Divider(),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Row(
-                          children: [
-                            Icon(Icons.person_rounded),
-                            SizedBox(width: 8),
-                            Text(
-                              '아티스트',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Divider(),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Row(
-                          children: [
-                            Icon(Icons.music_note),
-                            SizedBox(width: 8),
-                            Text(
-                              '회원님을 위한 재생 목록',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: Container(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            '최근 Shazam',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: GridView.builder(
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        childAspectRatio: 3 / 5),
-                                itemCount: songs.length,
-                                itemBuilder: (context, index) {
-                                  String imageUrl = songs[index]['imageUrl']!;
-                                  String title = songs[index]['title']!;
-                                  String artist = songs[index]['artist']!;
-
-                                  return Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: Container(
-                                      margin: EdgeInsets.only(
-                                        left: index % 2 == 1 ? 8 : 0,
-                                        right: index % 2 == 0 ? 8 : 0,
-                                        top: 8,
-                                        bottom: 8,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(8),
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.5),
-                                            blurRadius: 1,
-                                            spreadRadius: 1,
-                                          )
-                                        ],
-                                      ),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(8),
-                                              topRight: Radius.circular(8),
-                                            ),
-                                            child: Image.network(
-                                              imageUrl,
-                                              fit: BoxFit.fitHeight,
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.4,
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(6.0),
-                                              child: Stack(
-                                                children: [
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                        title,
-                                                        style: TextStyle(
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        artist,
-                                                        style: TextStyle(
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          color:
-                                                              Colors.grey[600],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Positioned(
-                                                    bottom: 5,
-                                                    child: Image.network(
-                                                      'https://images.squarespace-cdn.com/content/v1/5b31aa3a2487fddecb16c83d/1571241639561-RZS5N4CB4VQT3BEH3L1B/applemusic.png',
-                                                      width: 60,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              // 두번째 페이지
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.blue[300]!, Colors.blue[900]!],
-                  ),
-                ),
-                child: SafeArea(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8, horizontal: 16),
-                        child: Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                _tabController.index = 0;
-                              },
-                              child: Column(
-                                children: [
-                                  Icon(Icons.person, color: Colors.white),
-                                  Text(
-                                    '라이브러리',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Spacer(),
-                            GestureDetector(
-                              onTap: () {
-                                _tabController.index = 2;
-                              },
-                              child: Column(
-                                children: [
-                                  Icon(Icons.show_chart, color: Colors.white),
-                                  Text(
-                                    '차트',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.1,
-                      ),
-                      Text(
-                        'Shazam하려면 탭하세요',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.06,
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        width: 200,
-                        height: 200,
-                        decoration: BoxDecoration(
-                          color: Colors.blue[300],
-                          shape: BoxShape.circle,
-                        ),
-                        child: Image.network(
-                          "https://cdn.iconscout.com/icon/free/png-256/shazam-3-761709.png",
-                          color: Colors.white,
-                          width: 130,
-                          height: 130,
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.12,
-                      ),
-                      Container(
-                        width: 50,
-                        height: 50,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: Colors.blue[400],
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(
-                          Icons.search,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              // 세번째 페이지
-              SafeArea(
-                child: Column(
-                  children: [
-                    Text(
-                      '차트',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Container(
-                                  width: double.infinity,
-                                  height: 180,
-                                  color: Colors.purple[900],
-                                ),
-                                Column(
-                                  children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.8,
-                                      child: ElevatedButton(
-                                        onPressed: () {},
-                                        style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all(
-                                                  Colors.white),
-                                        ),
-                                        child: Text(
-                                          '국가 및 도시별 차트',
-                                          style: TextStyle(
-                                            color: Colors.purple[900],
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        '전 세계',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Container(
-                              width: double.infinity,
-                              height: 8,
-                              color: Colors.grey[400],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    '대한민국 차트',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                  Spacer(),
-                                  Text(
-                                    '모두 보기',
-                                    style: TextStyle(color: Colors.blue),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                AlbumCard(
-                                  imageUrl:
-                                      'https://ibighit.com/bts/images/bts/discography/dynamite/Q7gBkUusiDcIYljQOMX9ow6W.jpg',
-                                  name: 'Dynamite',
-                                  artist: 'BTS',
-                                ),
-                                AlbumCard(
-                                  imageUrl:
-                                      'https://ibighit.com/bts/images/bts/discography/dynamite/Q7gBkUusiDcIYljQOMX9ow6W.jpg',
-                                  name: 'Dynamite',
-                                  artist: 'BTS',
-                                ),
-                                AlbumCard(
-                                  imageUrl:
-                                      'https://ibighit.com/bts/images/bts/discography/dynamite/Q7gBkUusiDcIYljQOMX9ow6W.jpg',
-                                  name: 'Dynamite',
-                                  artist: 'BTS',
-                                ),
-                              ],
-                            ),
-                            Container(
-                              width: double.infinity,
-                              height: 8,
-                              color: Colors.grey[400],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    '글로벌 차트',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                  Spacer(),
-                                  Text(
-                                    '모두 보기',
-                                    style: TextStyle(color: Colors.blue),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                AlbumCard(
-                                  imageUrl:
-                                      'https://ibighit.com/bts/images/bts/discography/dynamite/Q7gBkUusiDcIYljQOMX9ow6W.jpg',
-                                  name: 'Dynamite',
-                                  artist: 'BTS',
-                                ),
-                                AlbumCard(
-                                  imageUrl:
-                                      'https://ibighit.com/bts/images/bts/discography/dynamite/Q7gBkUusiDcIYljQOMX9ow6W.jpg',
-                                  name: 'Dynamite',
-                                  artist: 'BTS',
-                                ),
-                                AlbumCard(
-                                  imageUrl:
-                                      'https://ibighit.com/bts/images/bts/discography/dynamite/Q7gBkUusiDcIYljQOMX9ow6W.jpg',
-                                  name: 'Dynamite',
-                                  artist: 'BTS',
-                                ),
-                              ],
-                            ),
-                            Container(
-                              width: double.infinity,
-                              height: 8,
-                              color: Colors.grey[400],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    '뉴욕 차트',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                  Spacer(),
-                                  Text(
-                                    '모두 보기',
-                                    style: TextStyle(color: Colors.blue),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                AlbumCard(
-                                  imageUrl:
-                                      'https://ibighit.com/bts/images/bts/discography/dynamite/Q7gBkUusiDcIYljQOMX9ow6W.jpg',
-                                  name: 'Dynamite',
-                                  artist: 'BTS',
-                                ),
-                                AlbumCard(
-                                  imageUrl:
-                                      'https://ibighit.com/bts/images/bts/discography/dynamite/Q7gBkUusiDcIYljQOMX9ow6W.jpg',
-                                  name: 'Dynamite',
-                                  artist: 'BTS',
-                                ),
-                                AlbumCard(
-                                  imageUrl:
-                                      'https://ibighit.com/bts/images/bts/discography/dynamite/Q7gBkUusiDcIYljQOMX9ow6W.jpg',
-                                  name: 'Dynamite',
-                                  artist: 'BTS',
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+              UpcomingRooms(upcomingRooms: upcomingRoomsList),
+              const SizedBox(height: 12.0),
+              ...roomsList.map((e) => RoomCard(room: e)),
+            ],
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              height: 100.0,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Theme.of(context).scaffoldBackgroundColor.withOpacity(0.1),
+                    Theme.of(context).scaffoldBackgroundColor
                   ],
                 ),
               ),
-            ],
+            ),
           ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-              child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    alignment: Alignment.topCenter,
-                    child: TabPageSelector(
-                      color: _seletedIndex == 1
-                          ? Colors.blue[300]
-                          : Colors.grey[400],
-                      selectedColor:
-                          _seletedIndex == 1 ? Colors.white : Colors.blue,
-                      controller: _tabController,
-                      indicatorSize: 8,
+          Positioned(
+            bottom: 60.0,
+            left: 40.0,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    CupertinoIcons.circle_grid_3x3_fill,
+                    size: 28.0,
+                  ),
+                ),
+                Positioned(
+                  right: 4.6,
+                  bottom: 11.8,
+                  child: Container(
+                    height: 16.0,
+                    width: 16.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
-                ],
+                )
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 60.0,
+            child: Container(
+              padding: const EdgeInsets.all(12.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).accentColor,
+                borderRadius: BorderRadius.circular(24.0),
               ),
+              child: const Text.rich(
+                TextSpan(
+                  children: [
+                    WidgetSpan(
+                      child: Icon(
+                        CupertinoIcons.add,
+                        size: 21.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'Start a room',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 60.0,
+            right: 40.0,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                IconButton(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ChatList(),
+                    ),
+                  ),
+                  icon: const Icon(
+                    CupertinoIcons.paperplane,
+                    size: 28.0,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -621,36 +400,309 @@ class _HomePageState extends State<HomePage>
   }
 }
 
-class AlbumCard extends StatelessWidget {
-  const AlbumCard(
-      {Key? key,
-      required this.imageUrl,
-      required this.name,
-      required this.artist})
+class UserProfileImage extends StatelessWidget {
+  const UserProfileImage({Key? key, required this.imageURL, this.size = 48.0})
       : super(key: key);
+  final String imageURL;
+  final double size;
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(size / 2 - size / 18),
+      child: Image.network(
+        imageURL,
+        height: size,
+        width: size,
+        fit: BoxFit.cover,
+      ),
+    );
+  }
+}
 
-  final String imageUrl;
-  final String name;
-  final String artist;
+class UpcomingRooms extends StatelessWidget {
+  final List<Room> upcomingRooms;
+
+  const UpcomingRooms({Key? key, required this.upcomingRooms})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color: Palette.secondaryBackground,
+          borderRadius: BorderRadius.circular(20.0)),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 32.0, top: 4.0, bottom: 4.0),
+        child: Column(
+          children: upcomingRooms
+              .map(
+                (e) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: e.club.isNotEmpty ? 2.0 : 0),
+                        child: Text(e.time),
+                      ),
+                      const SizedBox(
+                        width: 12.0,
+                      ),
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (e.club.isNotEmpty)
+                              Flexible(
+                                child: Text(
+                                  '${e.club} 🏡'.toUpperCase(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .overline!
+                                      .copyWith(
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 1.0,
+                                      ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            Flexible(
+                              child:
+                                  Text(e.name, overflow: TextOverflow.ellipsis),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              )
+              .toList(),
+        ),
+      ),
+    );
+  }
+}
+
+class RoomCard extends StatelessWidget {
+  final Room room;
+  const RoomCard({Key? key, required this.room}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4.0),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${room.club} 🏡'.toUpperCase(),
+                  style: Theme.of(context).textTheme.overline!.copyWith(
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 1.0,
+                      ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  room.name,
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                const SizedBox(height: 12.0),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 100.0,
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              left: 28.0,
+                              top: 20.0,
+                              child: UserProfileImage(
+                                imageURL: room.speakers[1].imageUrl,
+                                size: 48,
+                              ),
+                            ),
+                            UserProfileImage(
+                              imageURL: room.speakers[0].imageUrl,
+                              size: 48,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ...room.speakers.map(
+                            (e) => Text(
+                              '${e.givenName} ${e.familyName} 💬',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(fontSize: 16.0),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4.0),
+                            child: Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                      text:
+                                          '${room.speakers.length + room.followedBySpeakers.length + room.others.length} '),
+                                  const WidgetSpan(
+                                    child: Icon(
+                                      CupertinoIcons.person_fill,
+                                      size: 18.0,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  TextSpan(text: '/ ${room.speakers.length} '),
+                                  const WidgetSpan(
+                                    child: Icon(
+                                      CupertinoIcons.chat_bubble_fill,
+                                      size: 18.0,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ChatList extends StatefulWidget {
+  const ChatList({Key? key}) : super(key: key);
+
+  @override
+  State<ChatList> createState() => _ChatListState();
+}
+
+class _ChatListState extends State<ChatList> {
+  @override
+  Widget build(BuildContext context) {
     // TODO: implement build
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.network(
-            imageUrl,
-            width: MediaQuery.of(context).size.width * 0.29,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          leading: IconButton(
+            icon: Icon(
+              CupertinoIcons.back,
+              color: Colors.black,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
           ),
-          Text(
-            name,
-            style: TextStyle(fontWeight: FontWeight.bold),
+          title: Text(
+            'BACKCHANNEL',
+            style: TextStyle(color: Colors.black),
           ),
-          Text(artist),
-        ],
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.more_horiz,
+                color: Colors.black,
+              ),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.message,
+                color: Colors.black,
+              ),
+              onPressed: () {},
+            ),
+          ],
+          bottom: TabBar(
+            tabs: [
+              Tab(text: "Chats"),
+              Tab(text: "Requests"),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            ListView.builder(
+              itemCount: backChannelRoomsList.length,
+              itemBuilder: (context, index) {
+                BackChannelRoom backChannelRoom = backChannelRoomsList[index];
+
+                return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: ListTile(
+                        leading: UserProfileImage(
+                            imageURL: backChannelRoom.profileImageUrl),
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              backChannelRoom.name,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Text(backChannelRoom.message),
+                          ],
+                        ),
+                        trailing: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Icon(CupertinoIcons.forward),
+                            Text(
+                              backChannelRoom.timestamp,
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Divider(indent: 75),
+                  ],
+                );
+              },
+            ),
+            Center(
+              child: Text(
+                "👍 You're all good!\nYou don't have any new\nmessage requests.",
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

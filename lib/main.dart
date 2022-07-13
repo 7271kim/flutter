@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/study_widget/ButtonStudy.dart';
+import 'package:flutter_application/study_widget/NaviStudy.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'book_store/book_service.dart';
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
-          body: ButtonStudy(),
+          body: NaviStudy(),
         ),
       ),
     );

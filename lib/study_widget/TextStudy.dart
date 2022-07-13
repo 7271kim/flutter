@@ -17,7 +17,9 @@ class _TextStudyState extends State<TextStudy> {
         fontSize: 18,
         fontWeight: FontWeight.bold,
         color: Colors.grey,
+        letterSpacing: 1.0,
       ),
+      overflow: TextOverflow.ellipsis,
     );
   }
 }
