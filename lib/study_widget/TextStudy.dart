@@ -16,6 +16,7 @@ class _TextStudyState extends State<TextStudy> {
       style: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
+        color: Colors.grey,
       ),
     );
   }
