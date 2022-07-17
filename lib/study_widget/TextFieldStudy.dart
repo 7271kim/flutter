@@ -10,20 +10,40 @@ class TextFieldStudy extends StatefulWidget {
 class _TextFieldStudyState extends State<TextFieldStudy> {
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      autofocus: true,
-      // 커서 색상
-      cursorColor: Colors.indigo,
-      decoration: InputDecoration(
-        hintText: "한 줄 일기를 작성해주세요.",
-        // 포커스 되었을 때 밑줄 색상
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.indigo),
+    return Column(
+      children: [
+        TextField(
+          autofocus: true,
+          // 커서 색상
+          cursorColor: Colors.indigo,
+          decoration: InputDecoration(
+            hintText: "한 줄 일기를 작성해주세요.",
+            // 포커스 되었을 때 밑줄 색상
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.indigo),
+            ),
+          ),
+          onSubmitted: (_) {
+            Navigator.pop(context);
+          },
         ),
-      ),
-      onSubmitted: (_) {
-        Navigator.pop(context);
-      },
+        TextField(
+          autofocus: true,
+          // 커서 색상
+          cursorColor: Colors.indigo,
+          decoration: InputDecoration(
+            hintText: "한 줄 일기를 작성해주세요.",
+            // 포커스 되었을 때 밑줄 색상
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.indigo),
+            ),
+          ),
+          onSubmitted: (_) {
+            Navigator.pop(context);
+          },
+          obscureText: true, // 비밀번호 형식인지
+        )
+      ],
     );
   }
 }

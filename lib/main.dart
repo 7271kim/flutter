@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/study_widget/ConsumerStudy.dart';
+import 'package:flutter_application/study_widget/ServiceForChangeNoti.dart';
 import 'package:flutter_application/study_widget/TextEditingControllerStudy.dart';
 import 'package:flutter_application/study_widget/TextFieldStudy.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +16,7 @@ Future<void> main() async {
         MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (context) => BookService(prefs)),
+            ChangeNotifierProvider(create: (context) => ServiceForChangeNoti()),
           ],
           child: const MyApp(),
         ),
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
-          body: TextEditingControllerStudy(),
+          body: ConsumerStudy(),
         ),
       ),
     );
