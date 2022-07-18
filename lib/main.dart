@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/study_widget/AlertDialogStudy.dart';
 import 'package:flutter_application/study_widget/ListViewStudy.dart';
 import 'package:flutter_application/study_widget/PrefsService.dart';
 import 'package:flutter_application/study_widget/ServiceForChangeNoti.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
-          body: ListViewStudy(),
+          body: AlertDialogStudy(),
         ),
       ),
     );

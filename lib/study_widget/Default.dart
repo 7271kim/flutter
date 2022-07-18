@@ -10,6 +10,6 @@ class ContainerStudy extends StatefulWidget {
 class _ContainerStudyState extends State<ContainerStudy> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column();
   }
 }
