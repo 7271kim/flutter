@@ -118,6 +118,34 @@ class AppBarStudy extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ],
+
+      /// AppBar의 Bottom은 항상 PreferredSize 위젯으로 시작해야합니다.
+      bottom: PreferredSize(
+        preferredSize: Size(double.infinity, 72),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: "원하시는 책을 검색해주세요.",
+              // 테두리
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black),
+              ),
+
+              /// 돋보기 아이콘
+              suffixIcon: IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () {
+                  // 돋보기 아이콘 클릭
+                },
+              ),
+            ),
+            onSubmitted: (v) {
+              // 엔터를 누르는 경우
+            },
+          ),
+        ),
+      ),
       flexibleSpace: FlexibleSpaceBar(
         stretchModes: const <StretchMode>[
           StretchMode.zoomBackground,

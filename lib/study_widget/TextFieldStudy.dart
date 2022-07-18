@@ -22,6 +22,15 @@ class _TextFieldStudyState extends State<TextFieldStudy> {
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.indigo),
             ),
+            border: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+            ),
+            suffixIcon: IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                // 돋보기 아이콘 클릭
+              },
+            ),
           ),
           onSubmitted: (_) {
             Navigator.pop(context);
