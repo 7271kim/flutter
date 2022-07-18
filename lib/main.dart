@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/study_widget/ConsumerStudy.dart';
+import 'package:flutter_application/study_widget/ListViewStudy.dart';
 import 'package:flutter_application/study_widget/PrefsService.dart';
 import 'package:flutter_application/study_widget/ServiceForChangeNoti.dart';
-import 'package:flutter_application/study_widget/SharedPreferencesStudy.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'book_store/book_service.dart';
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
-          body: SharedPreferencesStudy(),
+          body: ListViewStudy(),
         ),
       ),
     );
