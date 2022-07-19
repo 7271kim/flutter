@@ -14,7 +14,9 @@ class _FlexibleStudyState extends State<FlexibleStudy> {
       children: [
         Flexible(
           flex: 2,
+          fit: FlexFit.loose,
           child: Container(
+            height: 100,
             color: Colors.cyan,
           ),
         ),
