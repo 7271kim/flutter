@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/study_widget/CardStudy.dart';
+import 'package:flutter_application/study_widget/PageViewStudy.dart';
 import 'package:flutter_application/study_widget/PrefsService.dart';
 import 'package:flutter_application/study_widget/ServiceForChangeNoti.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
-          body: CardStudy(),
+          body: PageViewStudy(),
         ),
       ),
     );
